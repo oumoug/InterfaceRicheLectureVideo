@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">InterfaceRicheLectureVideo</string>
+    <string name="url_videoRoute66">https://ia801406.us.archive.org/32/items/Route_66_-_an_American_badDream/Route_66_-_an_American_badDream_512kb.mp4</string>
+    <string  name="url_videoSynopsis">https://fr.wikipedia.org/wiki/Route_666_(film)</string>
+    <string  name="google_maps_key"> AIzaSyBLuTcqP9uQYAHqixwm3e46Th6I1RNAwto</string>
+    <string name="MAPVIEW_BUNDLE_KEY">BUNDLE_KEY</string>
+</resources>

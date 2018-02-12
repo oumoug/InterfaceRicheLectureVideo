@@ -1,0 +1,52 @@
+{
+  "Waypoints":[
+  {
+    "lat":"32.42",
+    "lng":"-90.13",
+    "label":"Ridgeland",
+    "timestamp":"45"
+  },
+  {
+    "lat":"38.90",
+    "lng":"-77.04",
+    "label":"Washington DC",
+    "timestamp":"300"
+  },
+  {
+    "lat":"40.73",
+    "lng":"-73.93",
+    "label":"New York",
+    "timestamp":"1940"
+  },
+  {
+    "lat":"41.88",
+    "lng":"-87.63",
+    "label":"Chicago",
+    "timestamp":"3250"
+  },
+  {
+    "lat":"35.22",
+    "lng":"-101.83",
+    "label":"Amarillo",
+    "timestamp":"3750"
+  },
+    {
+      "lat":"36.17",
+      "lng":"-115.14",
+      "label":"Las Vegas",
+      "timestamp":"5210"
+    },
+  {
+    "lat":"34.09",
+    "lng":"-118.33",
+    "label":"Hollywood",
+    "timestamp":"5780"
+  },
+  {
+   "lat":"32.72",
+  "lng":"-117.16",
+  "label":"San Diego",
+  "timestamp":"5780"
+  }
+  ]
+}
