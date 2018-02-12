@@ -58,6 +58,10 @@ public class MainActivity extends AppCompatActivity {
         chargechapitrage();
         chargeMap();
     }
+    /*****************************************
+     * enregistre l'etat de la carte           *
+     * et la position de la lecture            *
+    ***************************************/
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         Bundle mapViewBundle = outState.getBundle(getString(R.string.MAPVIEW_BUNDLE_KEY));
@@ -65,9 +69,15 @@ public class MainActivity extends AppCompatActivity {
             mapViewBundle = new Bundle();
             outState.putBundle(getString(R.string.MAPVIEW_BUNDLE_KEY), mapViewBundle);
         }
+        outState.putInt("duree", ancienPosition);
+        Log.i("savePosition", Integer.toString(ancienPosition));
         mMapView.onSaveInstanceState(mapViewBundle);
 
     }
+    /*************************************************
+     * télécharge la vidéo l'affiche dans la videoView *
+     * Affiche une barre de progression en attendant le téléchargement de la vidéo
+    *****************************************************/
     public void AfficheVideo(){
         videoRoute66=(VideoView) findViewById(R.id.videoViewRoute66);
         videoRoute66.setVideoURI(Uri.parse(getString(R.string.url_videoRoute66)));
@@ -86,6 +96,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    /****************************************************
+     * télécharge une page web et l'affiche dans une webView
+
+     *****************************************************/
     public void chargeWebView(){
         pageSynopsis= (WebView) findViewById(R.id.webView1);
         pageSynopsis.setWebViewClient(new WebViewClient());
@@ -99,6 +113,10 @@ public class MainActivity extends AppCompatActivity {
         });
         pageSynopsis.loadUrl(getString(R.string.url_videoSynopsis));
     }
+    /************************************************************
+     * défini l'action a faire lorsqu'on clique sur un bouton
+     * dans ce cas ci met la vidéo à une position defini par le tag du bouton
+    * ************************************************************************/
     private View.OnClickListener listenerScrollBar=new View.OnClickListener(){
 
         @Override
@@ -107,6 +125,10 @@ public class MainActivity extends AppCompatActivity {
             videoRoute66.seekTo((int)view.getTag()*1000);
         }
     };
+    /****************************************************************
+     * défini l'action à faire lorqu'on clique sur un waypoint de la carte google
+     * dans ce vas met la video à la position defini par le tag du waypoint
+    * **************************************************************************/
     private GoogleMap.OnMarkerClickListener ListenerWayPointGoogleMap= new GoogleMap.OnMarkerClickListener() {
         @Override
         public boolean onMarkerClick(Marker marker) {
@@ -115,6 +137,12 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
     };
+    /****************************************************************************
+     * charge le fichier json contenant les chapitres
+     * créee des boutons pour le chapitrage
+     * ajoute un listener au bouton
+     * ajoute les bouton aux layout
+     *****************************************************************************/
     public void chargechapitrage(){
        JSONObject objetJson;
         JSONArray tableauJson;
@@ -155,6 +183,14 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+    /********************************************************************
+     * charge le fichier json contenant les données des points de la map *
+     * création des point sur la map                                     *
+     * ajout listener aux point de la carte                              *
+     * @param une map google                                             *
+     * @return une map google                                            *
+     *****************************************************************/
+
     public GoogleMap creationWayPointMapGoogle(GoogleMap googleMap) {
         JSONObject objetJson;
         JSONArray tableauJson;
@@ -197,6 +233,9 @@ public class MainActivity extends AppCompatActivity {
         googleMap.setOnMarkerClickListener(ListenerWayPointGoogleMap);
         return googleMap;
     }
+    /**************************************************************
+     * charge la map e les points                                  *
+    ***************************************************************/
     public void chargeMap(){
         mMapView.getMapAsync(new OnMapReadyCallback(){
             public void onMapReady(GoogleMap googleMap){
@@ -205,6 +244,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+    /*****************************************************
+     * recharge la video à la position ou on s'etait arrété *
+    *******************************************************/
     @Override
     protected void onResume() {
         super.onResume();
@@ -235,7 +277,9 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         mMapView.onStart();
     }
-
+    /****************************************************************
+     * recharge la position de la vidéo                              *
+     * ***************************************************************/
     protected void onRestoreInstanceState(Bundle savedInstanceState){
         super.onRestoreInstanceState(savedInstanceState);
         ancienPosition = savedInstanceState.getInt("duree");
